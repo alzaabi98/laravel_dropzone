@@ -16,9 +16,12 @@
     <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet" type="text/css">
 
     <!-- Styles -->
+
     {{-- dropzone library --}}
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/dropzone/5.5.1/dropzone.css">
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+    {{-- lity js library --}}
+    <link rel="stylesheet" href="{{asset('css/lity.css')}}">
 </head>
 <body>
     <div id="app">
@@ -56,12 +59,13 @@
                                 </a>
 
                                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                                        <a href="/posts" class="dropdown-item">Posts</a>
                                     <a class="dropdown-item" href="{{ route('logout') }}"
                                        onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
                                         {{ __('Logout') }}
                                     </a>
-
+                                    
                                     <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
                                         @csrf
                                     </form>
@@ -75,11 +79,11 @@
          <!-- Scripts -->
         <script src="{{ asset('js/app.js') }}" defer></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/dropzone/5.5.1/dropzone.js"></script>
-
+        <script src=" {{ asset('js/lity.js')}}" defer></script>
         <main class="py-4">
             @yield('content')
         </main>
     </div>
-    @yield('script')
+    @yield('scripts')
 </body>
 </html>

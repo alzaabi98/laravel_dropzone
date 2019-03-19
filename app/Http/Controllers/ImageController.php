@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Image;
 use Illuminate\Http\Request;
-
+use Storage;
 class ImageController extends Controller
 {
     /**
@@ -80,6 +80,14 @@ class ImageController extends Controller
      */
     public function destroy(Image $image)
     {
-        //
+       if (Storage::delete('public/images/' . $image->path) ) {
+
+         $image->delete(); //delete image form db
+
+         return back()->with('success', ' Image was deleted succefuly');
+       } else {
+         return back()->with('error', ' there was a problem ');
+       }
+
     }
 }

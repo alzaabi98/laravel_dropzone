@@ -15,3 +15,5 @@ Route::get('/posts','PostController@index')->name('posts.index');
 Route::get('/posts/{post}', 'PostController@show')->name('posts.show');
 
 Route::post('/posts/{post}' , 'PostController@upload')->name('posts.upload');
+
+Route::delete('/images/{image}','ImageController@destroy')->name('images.destroy');
