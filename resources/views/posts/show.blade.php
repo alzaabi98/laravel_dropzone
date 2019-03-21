@@ -58,3 +58,22 @@
 
 
 @endsection
+@section('scripts')
+
+    <script>
+        Dropzone.options.myDropzoneForm = {
+            acceptedFiles: 'image/*' ,
+            init: function () {
+
+                this.on('success', function(){
+
+                    if (this.getQueuedFiles().length == 0 && this.getUploadingFiles().length == 0) {
+
+                        console.log("finished")
+                        location.reload()
+                    }
+                })
+            }
+        }
+    </script>
+@endsection
