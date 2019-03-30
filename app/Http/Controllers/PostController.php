@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Post;
+use Gate;
 use Illuminate\Http\Request;
 
 class PostController extends Controller
@@ -75,6 +76,9 @@ class PostController extends Controller
 
     public function upload(Request $request, Post $post)
     {
+        if (Gate::denies('upload_image', $post)) {
+            abort(401);
+        }
         if ($request->hasFile('file')) {
 
             $file = $request->file('file');

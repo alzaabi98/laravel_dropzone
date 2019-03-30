@@ -26,11 +26,15 @@
 
                                 </div>
                                 <div class="card-footer">
-                                <form action="{{ route('images.destroy', [ 'image' => $image])}}" method="POST">
-                                        @csrf
-                                        @method('delete')
-                                        <button type="submit" class="btn btn-danger">Delete</button>
+                                @can('upload_image', $post)
+
+                                    <form action="{{ route('images.destroy', [ 'image' => $image])}}" method="POST">
+                                            @csrf
+                                            @method('delete')
+                                            <button type="submit" class="btn btn-danger">Delete</button>
                                     </form>
+                                @endcan
+
                                 </div>
                             </div>
                         </div>
@@ -47,9 +51,11 @@
 
     <div class="row justify-content-center">
         <div class="col-md-10">
-        <form action="{{ route('posts.upload', [ 'post' => $post])}}" class="dropzone" id="myDropzoneForm">
-            @csrf
-        </form>
+         @can('upload_image', $post)
+            <form action="{{ route('posts.upload', [ 'post' => $post])}}" class="dropzone" id="myDropzoneForm">
+                @csrf
+            </form>
+        @endcan
         
         </div>
         
